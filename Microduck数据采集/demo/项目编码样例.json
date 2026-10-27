@@ -1,0 +1,118 @@
+[
+  {
+    "project_id": "P032",
+    "project_name": "microduck-kick",
+    "author_name": "Rishitha2628",
+    "author_identity_note": "公开发布账号署名，不等于已核实真实姓名或全部贡献者",
+    "classification": {
+      "direction_id": "D01",
+      "direction_name": "动作训练与算法实验",
+      "branch_label": "踢球训练",
+      "branch_status": "描述标签，尚未分配正式分支编号"
+    },
+    "purpose": "训练鸭子踢球，并比较动作效果和训练方法。",
+    "current_conclusion": "根据作者的仿真实验，踢球后失稳与任务的成功判定有关；加入身体高度和倾角检查后，原有训练方法也得到改善。不能据此认定某种算法普遍更好。",
+    "discovered_problems": "已发现：踢完摔倒仍可能得到成功奖励。作者报告已调整判定并改善仿真结果；实机效果尚未由本轮材料确认。",
+    "evidence_record_ids": [
+      "github:readme:1397620417"
+    ],
+    "source_links": [
+      "https://github.com/Rishitha2628/microduck-kick/blob/main/README.md"
+    ],
+    "evidence_excerpts": [
+      "The fix turned out to be in the task, not the algorithm."
+    ],
+    "evidence_scope": "未独立运行训练，也不能概括成某一种算法普遍更好。",
+    "reviewed_on": "2026-10-26",
+    "conclusion_basis": "本次取得的项目说明；作者报告的结果未独立复现"
+  },
+  {
+    "project_id": "P141",
+    "project_name": "microduck-academy",
+    "author_name": "kingsleyli920",
+    "author_identity_note": "公开发布账号署名，不等于已核实真实姓名或全部贡献者",
+    "classification": {
+      "direction_id": "D02",
+      "direction_name": "开发工具与运行环境",
+      "branch_label": "机器人教学工具",
+      "branch_status": "描述标签，尚未分配正式分支编号"
+    },
+    "purpose": "把机器人控制、代码练习和奖励评分放在同一个模拟课堂，帮助有编程基础的人入门。",
+    "current_conclusion": "当前是可运行部分课程的预览版；奖励实验主要比较现有策略，完整训练、模型导出和真机安装仍在路线图中。",
+    "discovered_problems": "此样例尚未核实具体故障。明确的未完成项：完整训练、模型导出和真机安装；这些是能力缺口，不能记成运行失败。",
+    "evidence_record_ids": [
+      "github:readme:1365270574"
+    ],
+    "source_links": [
+      "https://github.com/kingsleyli920/microduck-academy/blob/main/README.md"
+    ],
+    "evidence_excerpts": [
+      "PPO 训练、ONNX 导出和真机安装仍在路线图中。"
+    ],
+    "evidence_scope": "比较已有动作的评分，不等于已经能训练新动作；本次未安装验证。",
+    "reviewed_on": "2026-10-26",
+    "conclusion_basis": "本次取得的项目说明；作者报告的结果未独立复现"
+  },
+  {
+    "project_id": "P160",
+    "project_name": "duck-on-desk",
+    "author_name": "Happenmass",
+    "author_identity_note": "公开发布账号署名，不等于已核实真实姓名或全部贡献者",
+    "classification": {
+      "direction_id": "D03",
+      "direction_name": "AI应用与交互玩法",
+      "branch_label": "桌面宠物",
+      "branch_status": "描述标签，尚未分配正式分支编号"
+    },
+    "purpose": "把Microduck做成电脑桌面宠物，响应AI编程工具的工作状态，并提供关节控制、训练和评估功能。",
+    "current_conclusion": "已公开虚拟桌面应用及训练实验能力。README称苹果芯片训练已测试，但此前用户报告Apple GPU未生效，问题帖中未见原用户确认解决；具体环境的适配情况仍待核对。NVIDIA训练属于尚未验证。",
+    "discovered_problems": "历史反馈：用户选择Apple GPU后没有负载，作者在9月14日回复称上游框架原生未支持MPS，将一起修复。采集时问题帖仍开放，未见用户确认恢复；开放状态本身也不能证明当前仍有故障。另有NVIDIA训练待验证，不能记成已发生故障。",
+    "evidence_record_ids": [
+      "github:readme:1358823009",
+      "github:issue:5433801570",
+      "github:comment:5658207499"
+    ],
+    "source_links": [
+      "https://github.com/Happenmass/duck-on-desk/blob/main/README.md",
+      "https://github.com/Happenmass/duck-on-desk/issues/1",
+      "https://github.com/Happenmass/duck-on-desk/issues/1#issuecomment-5658207499"
+    ],
+    "evidence_excerpts": [
+      "MPS has been tested; CUDA awaits NVIDIA hardware verification."
+    ],
+    "evidence_scope": "同时读取项目说明、用户问题帖和作者回复；各记录对应的版本或环境未充分对齐，本研究未独立运行验证。",
+    "reviewed_on": "2026-10-26",
+    "conclusion_basis": "当前项目说明与历史问题讨论交叉阅读；保留表述差异，不擅自判断问题已解决或仍普遍存在。"
+  },
+  {
+    "project_id": "P177",
+    "project_name": "microduck-replica",
+    "author_name": "fanhao375",
+    "author_identity_note": "公开发布账号署名，不等于已核实真实姓名或全部贡献者",
+    "classification": {
+      "direction_id": "D04",
+      "direction_name": "硬件复刻与适配",
+      "branch_label": "整机复刻",
+      "branch_status": "描述标签，尚未分配正式分支编号"
+    },
+    "purpose": "利用公开资料和替代零件组装实体鸭子，提供采购、打印、装配、控制和训练资料。",
+    "current_conclusion": "作者报告飞特舵机版整机已能站立、行走和翻滚后起身；训练平台已完成短试跑、评估和导出，但自训策略的真机验证仍待完成。",
+    "discovered_problems": "历史求助中，用户请求补充舵机与IMU接线示意、打印材料及参数。这能确认复刻者需要操作细节，但不能据旧帖判断当前文档仍缺失。另有长训练与自训策略上机待验证。",
+    "evidence_record_ids": [
+      "github:readme:1349648156",
+      "github:issue:5538095265",
+      "github:issue:5881748070"
+    ],
+    "source_links": [
+      "https://github.com/fanhao375/microduck-replica/blob/master/README.md",
+      "https://github.com/fanhao375/microduck-replica/issues/35",
+      "https://github.com/fanhao375/microduck-replica/issues/46"
+    ],
+    "evidence_excerpts": [
+      "长训练与自训策略的真机验证仍待完成。"
+    ],
+    "evidence_scope": "本次仅阅读说明，未独立检查视频或实测；不代表官方整机体验。",
+    "reviewed_on": "2026-10-26",
+    "conclusion_basis": "本次项目说明及历史求助内容；作者报告的实机结果未独立复现。"
+  }
+]

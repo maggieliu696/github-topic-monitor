@@ -1,0 +1,104 @@
+{
+  "research": {
+    "topic": "Microduck",
+    "focus": [
+      "开发用途",
+      "实际问题及解决状态",
+      "产品评价"
+    ],
+    "timezone": "Asia/Shanghai",
+    "daily_time": "09:00",
+    "proposed_initial_lookback_days": 30,
+    "active_platforms": [
+      "github"
+    ],
+    "tracked_project_count": 41,
+    "candidate_project_count": 125
+  },
+  "github": {
+    "tier_file": "monitoring-tiers.json",
+    "background_repos": [
+      "pollen-robotics/microduck",
+      "pollen-robotics/microduck_rl"
+    ],
+    "repos": [
+      "pollen-robotics/microduck",
+      "pollen-robotics/microduck_rl",
+      "Macmachi/microduck-rl-genesis",
+      "5usu/IsaacLab",
+      "kabilankb/isaaclab-microduck",
+      "osrbot/microduck-ros2-isaac",
+      "adityakamath/microduck_description",
+      "jvpflum/microduck-lab",
+      "jonathanhawkins/microduck-lab",
+      "metahubaifeel/microduck-rl-on-thor",
+      "Vottivott/microduck-playground",
+      "ngxson/wicroduck",
+      "bsprenger/microduck-rl-torch",
+      "noahfarr/microdux",
+      "rocPAI-Forge/microduck_rl_unilab",
+      "heranhe/microduck-lab-cloud",
+      "ros-claw/microduck",
+      "zachgarner/microduck-headstand",
+      "toyhank/microduck-vision-soccer",
+      "rokbenko/quackd",
+      "andreagenovese/quacksat",
+      "agentculture/microduck-cli",
+      "notwitcheer/microduck-lab",
+      "craigm26/duckkit",
+      "AlexBodner/microduck-tracking",
+      "IronSpiderMan/MicroDuckModels",
+      "microai-lab/microduck-studio",
+      "xingxingRealzyx/esp-duck",
+      "00make/microduck-arena",
+      "kingsleyli920/microduck-academy",
+      "amazedsaint/duckfly",
+      "LathamZ/microduck-color-studio",
+      "Happenmass/duck-on-desk",
+      "a125477365/DuckPet",
+      "ScrapMeta/microduck-diy",
+      "fanhao375/microduck-replica",
+      "lingzolabs/microduck-hardware-replica",
+      "AI-FanGe/Microduck-build-tutorial",
+      "7757/fanduck",
+      "AiBoBoMaker/MicroDuck-BoBoRedesign",
+      "jyg9/microduck-community-kit",
+      "Animan-AI/DuckBuddy",
+      "zj281136/microduck-s288"
+    ],
+    "queries": [
+      "microduck in:name,description fork:true",
+      "microduck in:readme fork:true"
+    ],
+    "search_pages": 2,
+    "tracked_baseline_exists": true,
+    "repo_limit": 200,
+    "max_pages": 5,
+    "max_requests": 1500
+  },
+  "huggingface": {
+    "repos": [],
+    "repo_types": [],
+    "queries": [],
+    "repo_limit": 100,
+    "discussion_pages": 4,
+    "max_requests": 0,
+    "enabled": false
+  },
+  "hackernews": {
+    "stories": [],
+    "keywords": [
+      "microduck",
+      "micro duck",
+      "micro-duck"
+    ],
+    "new_story_limit": 0,
+    "max_requests": 0,
+    "enabled": false
+  },
+  "execution": {
+    "enabled": true,
+    "status": "github_incremental_collection_enabled",
+    "reason": "先由程序比较仓库信号和内容指纹，只把正文或状态发生实质变化的增量交给Agent。"
+  }
+}

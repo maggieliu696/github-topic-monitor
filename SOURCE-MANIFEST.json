@@ -1,0 +1,534 @@
+{
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "51ae9a3f08b8fbfbf8b6e656d0a988d0531950301d52ba6765a5b4c28487ee70",
+      "bytes": 5949
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "395dd36fe3c73bb23e91e577f97196c9728c6fc414636215398a3bbdfedaf178",
+      "bytes": 1964
+    },
+    {
+      "path": "BEGINNER-TROUBLESHOOTING.md",
+      "sha256": "3a87660f277cd5e0d77ad5f2036325451e75108548477b1846546db3ce5375f0",
+      "bytes": 6741
+    },
+    {
+      "path": "GITHUB-RELEASE-CHECKLIST.md",
+      "sha256": "6f1ab4199d647bb10a3b64296b7f5e4e264d9b56d63cff9859e1917f386ecaf7",
+      "bytes": 590
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "dea9cf1fc6553034c7cf67fc8f25f07ce94ff257d90988ca131325c03460ba58",
+      "bytes": 1069
+    },
+    {
+      "path": "Microduck数据采集/.gitignore",
+      "sha256": "178d606e05ffbfc1cce888f41074fa8e56d12a62b7b53f2ea33f83ad417c5e5f",
+      "bytes": 166
+    },
+    {
+      "path": "Microduck数据采集/A-B分级监控规则.md",
+      "sha256": "8c0db7b3da9df321f1ab7cc4e510fb605d3f3efee0ff2aced52e01a100bd095d",
+      "bytes": 1172
+    },
+    {
+      "path": "Microduck数据采集/README.md",
+      "sha256": "441aa3565bb072f0f65e3bee7e03d7dc169282cffdffdcedf8add39fb956462c",
+      "bytes": 1946
+    },
+    {
+      "path": "Microduck数据采集/clean_demo.py",
+      "sha256": "f548c8a4dda4d2d3359375b6de8cb0948546990786047792bf239de1f07cff18",
+      "bytes": 11573
+    },
+    {
+      "path": "Microduck数据采集/collector.py",
+      "sha256": "f62d50a1dbe715a3f5e3bb0d7b81eca1781e1da184e9f2d298c11004da5d5fd9",
+      "bytes": 33179
+    },
+    {
+      "path": "Microduck数据采集/config-demo.json",
+      "sha256": "6a3bd9172cf6326e207ab0602c697bcb913ae72d36c6b0e5150f30bb377b0240",
+      "bytes": 1679
+    },
+    {
+      "path": "Microduck数据采集/config.json",
+      "sha256": "c8fa3116be686a719ec0717a435b12d5f8a4e9b0dbd780fe2eacf75db1ec6041",
+      "bytes": 2913
+    },
+    {
+      "path": "Microduck数据采集/configure_github_keychain.sh",
+      "sha256": "53e8cad1675c8204923fed5c506a8dedf718953b108ed6fecc53d49e1e08e084",
+      "bytes": 532
+    },
+    {
+      "path": "Microduck数据采集/configure_github_keychain_gui.sh",
+      "sha256": "06f062fdb09f9c79186c0cdedd7ff7b226a4bc9730b7269eec1aec486d3050a6",
+      "bytes": 871
+    },
+    {
+      "path": "Microduck数据采集/demo/API原始响应.jsonl",
+      "sha256": "c45e6c9232108d15e8bf5370aefd5c36f5d685f0b8c3ad623ec7121b332794e5",
+      "bytes": 2163614
+    },
+    {
+      "path": "Microduck数据采集/demo/中文样例.json",
+      "sha256": "293cc681c1f7796ef34b62d0c47c553d37e6efd08ad789375ea0a5be1f4c2263",
+      "bytes": 19556
+    },
+    {
+      "path": "Microduck数据采集/demo/原始记录.json",
+      "sha256": "ff14f98b8a860a0fd468176bbb1e5b71b4cb2e8226aac9565c0e3177a0425b48",
+      "bytes": 1085342
+    },
+    {
+      "path": "Microduck数据采集/demo/清洗后信息.jsonl",
+      "sha256": "970b1b303c1ed40b054a724b6842050ee40faee255e1daf233d6b0edea5e5674",
+      "bytes": 1355979
+    },
+    {
+      "path": "Microduck数据采集/demo/清洗审计.json",
+      "sha256": "45f67ddac65e85297b8b292f81a0aba5be2e9ce07c7ae34f53cdce10f1f2fc93",
+      "bytes": 142223
+    },
+    {
+      "path": "Microduck数据采集/demo/清洗结果示例.md",
+      "sha256": "7eaf39c6ef18a6cc76d851c2b85c015ba357bbedebf03be248322ee4d8e47019",
+      "bytes": 12172
+    },
+    {
+      "path": "Microduck数据采集/demo/清洗统计.json",
+      "sha256": "cc149c6b3b8e439a8d2269c96671acd299e71c19169d2f46b5972723e88ca0cd",
+      "bytes": 1084
+    },
+    {
+      "path": "Microduck数据采集/demo/项目编码样例.json",
+      "sha256": "7996f344d64b88864d88878e37c7c0cd66f23852e828530ccc052bb5bc59cc1e",
+      "bytes": 6676
+    },
+    {
+      "path": "Microduck数据采集/feishu/README.md",
+      "sha256": "a44f4f8a5cc7c16b2cbae8e8606239e468cfe90b0d590a5618f0a1df1c260f72",
+      "bytes": 1679
+    },
+    {
+      "path": "Microduck数据采集/feishu/configure_macos_keychain.sh",
+      "sha256": "0b9967c7d776c930373d3db0c5b56ebbefe99b6b3dd24e59ce04e8bf0f617244",
+      "bytes": 893
+    },
+    {
+      "path": "Microduck数据采集/feishu/keychain_helper.swift",
+      "sha256": "d5ec1eda5ff61c5bb14b8ac6fac2ac62d92d682ef915ce1cba0abd62fc66f56b",
+      "bytes": 1161
+    },
+    {
+      "path": "Microduck数据采集/feishu/send_digest.py",
+      "sha256": "6d58d81b7a9d37a188a801f7afc6bbf96b43977aece534be720c1d93d8705657",
+      "bytes": 7443
+    },
+    {
+      "path": "Microduck数据采集/feishu/state/卡片预览.json",
+      "sha256": "413718ff7a7e32b3c6dddadaf618b0894df6d71037db312b17f0214268e99220",
+      "bytes": 2281
+    },
+    {
+      "path": "Microduck数据采集/monitoring-tiers.json",
+      "sha256": "b8bbf2ef02d26aa880ef0eb44bb59de2e3202bbbd34a7da6444a39228a224b3d",
+      "bytes": 46316
+    },
+    {
+      "path": "Microduck数据采集/pilot/README.md",
+      "sha256": "13d360532c1a6c800cd6f7882dfa760d1e160fa5ac19a3de6c9aeb521e4a7016",
+      "bytes": 2378
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/日报.md",
+      "sha256": "e3ea9753f1e5e28eb303aae596a1a188097f6c8753218d57c37c9af1834b8877",
+      "bytes": 1682
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/Duck on Desk.md",
+      "sha256": "5fe145a9c52b5400c633e0fec8571a97bc81b1ce638e01debd05426045ffa6bf",
+      "bytes": 6559
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/DuckBuddy.md",
+      "sha256": "630ce6bb7f9ac30525158b5e93b8921bb1207fa8278a785d2d46663358222ad7",
+      "bytes": 2479
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/DuckFly.md",
+      "sha256": "00e80996e411c051b53891074cd9dd269802fc09c750012309695cffc82ac597",
+      "bytes": 2207
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/DuckKit.md",
+      "sha256": "0510405501627a168bd417eae8c96b4aca4614105265abd48d4f89287358bc96",
+      "bytes": 2256
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/DuckPet.md",
+      "sha256": "3abe3fb8679f2109b10027cab5e2e33018f967ad0ba52f186f25e063ad86b324",
+      "bytes": 2393
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/Fanduck.md",
+      "sha256": "3fb52572af34411a73c2934fd6eddc9587420089ce9fa66989ee4b4f5a583f07",
+      "bytes": 2383
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/Isaac Lab Microduck port.md",
+      "sha256": "dccef46b1257adc348a73e77b09c8547bce9c9daa3497ad6fd0ee02e7b06789e",
+      "bytes": 2612
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/MicroDuck BoBoRedesign.md",
+      "sha256": "30efe586fac5b263a5951bffcaf45c75e2125c1b938428db9c928516d3e382a9",
+      "bytes": 2352
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/MicroDuck Playground.md",
+      "sha256": "96ab00f49a22e9639944b7d47b1dac85b93dec6574c77ad482b87ef6af2f91af",
+      "bytes": 2994
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/MicroDuckModels.md",
+      "sha256": "ab71105eaed2e563b706789326b35eb070bb1076210063da6c5445f2636f249f",
+      "bytes": 2355
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/Microduck Academy.md",
+      "sha256": "9515158abf3e940710f8807f02c655eb369c2534781d3fa0d79f9db47b7f157f",
+      "bytes": 4599
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/Microduck Circus.md",
+      "sha256": "451a22c02d47ba1f2966ec44e1b0729f5501561452b618be280f736cd1f9e9b8",
+      "bytes": 2340
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/Microduck Color Studio.md",
+      "sha256": "d4f17d19fb07cf2f260a38c72645603340fed937c3ffe22af5f70e584e7ba854",
+      "bytes": 2328
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/Microduck Studio.md",
+      "sha256": "8e6249e11919680fb038129058d20b217a2dd27d05977128a00e55cfc75ab11a",
+      "bytes": 2476
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/Microduck Vision Soccer.md",
+      "sha256": "20dc1a5c422e1c6ac8446a6c96f6464be83ea40d2094d237d1b37df53715bfe1",
+      "bytes": 2327
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/Microduck build tutorial.md",
+      "sha256": "e170b803964fdb579847569a0bcfe2c4756a69afd37787621d321d4b5560e131",
+      "bytes": 2844
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/Microduck headstand.md",
+      "sha256": "9d09fbaf15d2066a95c89c0b8d4da072d9f185c47bd6b19d88959124421df428",
+      "bytes": 2256
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/Microduck-S288.md",
+      "sha256": "6fb4e3d2625b63791f538dcb361a36eb43487a532f6a40aef9e3ef5904ea8009",
+      "bytes": 2349
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/Wicroduck.md",
+      "sha256": "256e4a0bebbaaf2f4f7b0f143bc7e2b1acfa5e51a25bd9e538c2b1ded58f1c46",
+      "bytes": 2238
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/esp-duck.md",
+      "sha256": "e8fbf867c85226bb854d2a78b2e6c14ed212893e0d14d9fca0ab91f8589f3e35",
+      "bytes": 2246
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/isaaclab-microduck (Newton).md",
+      "sha256": "6005a854137c6d4a984e1a90b8743fe1c9c00d59228e25f5eb594df8f5da6b3d",
+      "bytes": 2313
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-arena (3v3 football).md",
+      "sha256": "45e7593501d1cf538e902c7a6f282bfbce705586f35ed9795806488979cccd39",
+      "bytes": 2225
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-cli.md",
+      "sha256": "f36279445cc5c0a2e9c35faf11776411a3896b7dc67ce02240aa13d4b6dde378",
+      "bytes": 2432
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-community-kit.md",
+      "sha256": "7adfe6b03003c3e1801d64640de75a1267727e632d2d2acc99eb284bac75dfa5",
+      "bytes": 2603
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-diy.md",
+      "sha256": "a38585323d54a256484d7c2cc6d06b978ab800351c73c23378a2b39ade939ec2",
+      "bytes": 2778
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-hardware-replica.md",
+      "sha256": "e4bfd90002e2b2a71e6c7b97c98aac53ae1a61c5fcdd58f49e386fcfe48a1c44",
+      "bytes": 2385
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-lab (Apple Silicon).md",
+      "sha256": "1f8df1d423567c649b588f6ff1f62c25b573261c32ea396dc3b7d4b5c4bd5aca",
+      "bytes": 2564
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-lab (Colab).md",
+      "sha256": "41c03ee234db6ea340735998f1b5cc5c51fe797bcec7557137a96bf72e9dd110",
+      "bytes": 2413
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-lab (DGX Spark).md",
+      "sha256": "4b8771dbf505707107c40eaa740623ac9a7439af87734167038d3e3fc271e1fc",
+      "bytes": 2331
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-lab (Hermes Agent).md",
+      "sha256": "478bf58abe752733e67a4dc09a0511e3388d4f9ef5a7224a04a4dda10e6ae434",
+      "bytes": 2609
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-replica.md",
+      "sha256": "8e10c722e43e3fba6c1f0897fa4424a1f2eca41c12f5f7ba5aee823a9dcfaa1e",
+      "bytes": 6145
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-rl-genesis.md",
+      "sha256": "91398d637c253bfdacf602e2b8470a3c94aa74416c3ff75abf23517c95928ee0",
+      "bytes": 2319
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-rl-on-thor.md",
+      "sha256": "c17c303555ca2667f6bda7fac9f0bae83c78ac8a43ee8ad325dff357b7b37f22",
+      "bytes": 2504
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-rl-torch.md",
+      "sha256": "081e3f7f3ef6deb02e73b755639040a83c40a06656831c3651a028dfe720a882",
+      "bytes": 2352
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-ros2-isaac.md",
+      "sha256": "3c1f7ddd59ff4b0b30e43f839107bfdb355ac3722a98c10fa30f1c2ce43c16f6",
+      "bytes": 2352
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck-tracking.md",
+      "sha256": "7a70f23e6f5b48400057d35a9addea6a62e7aa615612b8d3dbfdd6be13846444",
+      "bytes": 2423
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck_description.md",
+      "sha256": "fcda5802034e689794b7b947c7761a87570837030bf6793b7b0ddf07346fb5f4",
+      "bytes": 2314
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microduck_rl_unilab.md",
+      "sha256": "5d759e1039ef2302b9d96a786ab543c06411bf83b41b83dacdeb6dd039bbb8a7",
+      "bytes": 2655
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/microdux.md",
+      "sha256": "d5e03957ab1e2e76ba06e120f1114d9bc364a21e4cfecf89570d7603157bc32e",
+      "bytes": 2263
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/quackd.md",
+      "sha256": "1df3a178bf6cf1fba509d6260b801a8950c714e4b83f02263a6ef7379d3d75cd",
+      "bytes": 2770
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/quacksat.md",
+      "sha256": "d712a06069e3e6e6dc19c1fe475cffeb00ea6a9c517bef055bc7cbb5936772cc",
+      "bytes": 2701
+    },
+    {
+      "path": "Microduck数据采集/pilot/pipeline.py",
+      "sha256": "3bae7376b073d8ab76fff7e2130809a97f09f791e3934fd4b4ef0c68f1d95906",
+      "bytes": 26484
+    },
+    {
+      "path": "Microduck数据采集/pilot/team_digest.json",
+      "sha256": "9c7f1126eb4891c4185fba4fe23293dcdd4a7d7a3270e0dbd0ab97cc4e3b2c79",
+      "bytes": 5058
+    },
+    {
+      "path": "Microduck数据采集/pilot/tests/test_pipeline.py",
+      "sha256": "a7f21d48c9aefdeee7330efc6cfea8163d5a02eab9008a3389dc8c4cd368d34a",
+      "bytes": 18350
+    },
+    {
+      "path": "Microduck数据采集/pilot/日报改写前校验.json",
+      "sha256": "74e885322afbd51b5df63fea4ef78c3977eecbc575c4eacda37fc1a41a9cb31b",
+      "bytes": 1488
+    },
+    {
+      "path": "Microduck数据采集/pilot/日报改写验证.json",
+      "sha256": "1768a500966a222da9f4093d3ea434e47d30255356098cd0142afa0567827251",
+      "bytes": 288
+    },
+    {
+      "path": "Microduck数据采集/pilot/档案与日报设计.md",
+      "sha256": "c8ec22ea0f0340bc79bb2de26a7111b61ea9a1d8133b1556bd3d90e579bc9800",
+      "bytes": 5062
+    },
+    {
+      "path": "Microduck数据采集/pilot/验证记录.json",
+      "sha256": "5f2a47d90724979fe90d176afd70e62d75e909ed4188d82735a28c5d9129cb1a",
+      "bytes": 685
+    },
+    {
+      "path": "Microduck数据采集/selection/update_stars.py",
+      "sha256": "6f99b00557950fa5056191e5eb629c6afd4081cc68c8e1a55525e3219eb0a915",
+      "bytes": 8892
+    },
+    {
+      "path": "Microduck数据采集/selection/项目选择清单.json",
+      "sha256": "0dff7abe2327626f63f28baab5c4234eb0eabdf7f55f83d485d13a398b21ba79",
+      "bytes": 191530
+    },
+    {
+      "path": "Microduck数据采集/sync_monitoring_tiers.py",
+      "sha256": "b50f6670a41208657f95aa274226466b52d197220a583e88f955828ca1a82ee4",
+      "bytes": 3179
+    },
+    {
+      "path": "Microduck数据采集/tests/test_clean_demo.py",
+      "sha256": "013a01d91c3e424d5866059e7e6e8a099b4ce6dbe7878c9c218b2d7ca3cf9fe3",
+      "bytes": 7355
+    },
+    {
+      "path": "Microduck数据采集/tests/test_collector.py",
+      "sha256": "3cf8e0cdd438f3be4a9419caf7469861e71596a38ce5e3ff64c158336f24cc85",
+      "bytes": 6207
+    },
+    {
+      "path": "Microduck数据采集/tests/test_current_scope.py",
+      "sha256": "af69a5ce6194aec6fadd7428a5a080503a20c8e14c461c47c839f94d6c93e6c7",
+      "bytes": 561
+    },
+    {
+      "path": "Microduck数据采集/tests/test_feishu_sender.py",
+      "sha256": "bf75e81a38d65c2c7e248e58eebb5d1f627c8c771f843d043d018c49d7091b24",
+      "bytes": 1408
+    },
+    {
+      "path": "Microduck数据采集/weekly_tier_review.py",
+      "sha256": "5f43934fcef068044a007e058e0189aed0c23edc559cba7361e317d5050459c1",
+      "bytes": 1448
+    },
+    {
+      "path": "Microduck数据采集/writing-skills/humanizer-zh/LICENSE",
+      "sha256": "aa00e74769e1b9d8e7fa7094dbfcca9b129a0ded6dce1cf4da050b99146d2fa7",
+      "bytes": 1063
+    },
+    {
+      "path": "Microduck数据采集/writing-skills/humanizer-zh/SKILL.md",
+      "sha256": "95627fd4437d886f98032ccc62d79136e6310f1fc04e354bb86431795ff206df",
+      "bytes": 20527
+    },
+    {
+      "path": "Microduck数据采集/writing-skills/humanizer-zh/source.json",
+      "sha256": "e86807d06411ac3238206db41b782686c72724bbfdf00c1e15a47eba68916559",
+      "bytes": 235
+    },
+    {
+      "path": "Microduck数据采集/writing-skills/日报推送_飞书群版.md",
+      "sha256": "e806d3c7ea9cf462bbd73268d982727302214451d8b210c811ebb99af11fbe2d",
+      "bytes": 4477
+    },
+    {
+      "path": "Microduck数据采集/writing-skills/日报推送定稿.md",
+      "sha256": "ed892573aa807732589166ef37beb696f6e986b39f97d15bf6c91b4b5e1d7571",
+      "bytes": 5781
+    },
+    {
+      "path": "Microduck数据采集/writing-skills/日报风格基准.json",
+      "sha256": "5c0662c47119aac3024493491354d5b6db9123d8378294652d647ee6999fb1ae",
+      "bytes": 5947
+    },
+    {
+      "path": "Microduck数据采集/增量筛选说明.md",
+      "sha256": "c3414bb61c582510256871c4ae7e550a34950a0f4b21de3243188cd43790eaf7",
+      "bytes": 1605
+    },
+    {
+      "path": "Microduck数据采集/平台API接入调研.md",
+      "sha256": "3e650d60af99fa604b013e02ad98bf49ba19973e442462a7cc792653b4c1d0df",
+      "bytes": 6754
+    },
+    {
+      "path": "Microduck数据采集/调研任务书.md",
+      "sha256": "154fefd8936d535d47927f3bf86a36a54089e9bbea73f56662957523d51950ae",
+      "bytes": 27635
+    },
+    {
+      "path": "Microduck数据采集/连接流程.md",
+      "sha256": "4b7d5edd3ed8b1c10747507277dd6d753a008e7be1272c757061ba1eef798f83",
+      "bytes": 4222
+    },
+    {
+      "path": "Microduck项目候选清单.md",
+      "sha256": "7366b30135002e09c7535639623d7fc27e06312df1d1503c75aac890cdfb3a19",
+      "bytes": 63785
+    },
+    {
+      "path": "SETUP.md",
+      "sha256": "4752c7f50a92ff4501bef8e0943fed71cb560088d4040db66a2068ede7f44a1c",
+      "bytes": 2215
+    },
+    {
+      "path": "automations/09-00-research.md",
+      "sha256": "48cd0eccfa775280526a009c2d79b491ddd9b98cba58623b82a379f622e3a283",
+      "bytes": 758
+    },
+    {
+      "path": "automations/09-30-delivery.md",
+      "sha256": "35d9c6472a69aa693323f4d32fa1a449b091e7d417cb7041dfcbf9520b4f1204",
+      "bytes": 397
+    },
+    {
+      "path": "config.example.json",
+      "sha256": "bf7e6371309d0716a680ecaae90ec239dfe7f2103be0a36eed2cc2017051439e",
+      "bytes": 436
+    },
+    {
+      "path": "credentials.example.env",
+      "sha256": "3f4ac8c6f184d0482f89281336c22a68cbaaf34923d481f0f59f7de2713378f1",
+      "bytes": 122
+    },
+    {
+      "path": "scripts/check_environment.py",
+      "sha256": "17125fb81a2cdd3b618ad5c0c97a0b155bbfc9acc2c363f2392482947b39ac68",
+      "bytes": 1217
+    },
+    {
+      "path": "scripts/install.py",
+      "sha256": "03219d26276a2c9570751af5e22bcb50a3a65fc9d3852cb88034904a49364c16",
+      "bytes": 1040
+    },
+    {
+      "path": "scripts/package_for_github.py",
+      "sha256": "2d96a6a5093a08cbf233222a708c3267231dff95bd14658d97847014e4f6751e",
+      "bytes": 2730
+    },
+    {
+      "path": "scripts/package_for_handoff.py",
+      "sha256": "0600b8d8fa340e6e5a8a0860811c303af3b8474d9d2e5f54ee863c96f93dc1a1",
+      "bytes": 2013
+    }
+  ]
+}

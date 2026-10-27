@@ -1,0 +1,43 @@
+{
+  "scope": "选定来源的一次快照；数量是资料记录，不是项目数、用户数或当天新增量",
+  "platforms": [
+    {
+      "platform": "github",
+      "records_received": 186,
+      "readable_text_records": 165,
+      "context_only_records": 21,
+      "types": {
+        "pull_request_comment": 35,
+        "issue_comment": 59,
+        "issue": 43,
+        "project_readme": 5,
+        "release": 23
+      }
+    },
+    {
+      "platform": "huggingface",
+      "records_received": 37,
+      "readable_text_records": 23,
+      "context_only_records": 14,
+      "types": {
+        "project_readme": 4,
+        "discussion_comment": 19
+      }
+    },
+    {
+      "platform": "hackernews",
+      "records_received": 415,
+      "readable_text_records": 252,
+      "context_only_records": 163,
+      "types": {
+        "comment": 252
+      }
+    }
+  ],
+  "source_records": 638,
+  "cleaned_text_records": 440,
+  "context_only_records": 198,
+  "new_research_conclusions": 0,
+  "automatic_sentiment_or_buyer_inference": false,
+  "records_with_missing_parent_context": 0
+}
