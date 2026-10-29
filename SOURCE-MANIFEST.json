@@ -1,14 +1,17 @@
 {
+  "version": "0.2.0-preview",
+  "scope": "portable-source-with-public-Microduck-example",
+  "live_state_included": false,
   "files": [
     {
-      "path": "README.md",
-      "sha256": "51ae9a3f08b8fbfbf8b6e656d0a988d0531950301d52ba6765a5b4c28487ee70",
-      "bytes": 5949
+      "path": ".gitignore",
+      "sha256": "27cd80fc9033ff3b9ecbf8ab5a727587e25ca803e261d833346d194ed4dede88",
+      "bytes": 191
     },
     {
       "path": "AGENTS.md",
-      "sha256": "395dd36fe3c73bb23e91e577f97196c9728c6fc414636215398a3bbdfedaf178",
-      "bytes": 1964
+      "sha256": "4570a8a776c900cac4416e649fda4dfa9d0d0cffe9583dbff5b4803d9d32162e",
+      "bytes": 2630
     },
     {
       "path": "BEGINNER-TROUBLESHOOTING.md",
@@ -16,9 +19,14 @@
       "bytes": 6741
     },
     {
+      "path": "CHANGELOG.md",
+      "sha256": "fd378a8a1cd28180e3c643e436e91e6ca5253c84f93e66dd45d410407bd04c02",
+      "bytes": 714
+    },
+    {
       "path": "GITHUB-RELEASE-CHECKLIST.md",
-      "sha256": "6f1ab4199d647bb10a3b64296b7f5e4e264d9b56d63cff9859e1917f386ecaf7",
-      "bytes": 590
+      "sha256": "42512216b4a96819a47b85185ae8933a7bf0e8986e7c8a940ae27a57ae0bb143",
+      "bytes": 579
     },
     {
       "path": "LICENSE",
@@ -26,19 +34,14 @@
       "bytes": 1069
     },
     {
-      "path": "Microduck数据采集/.gitignore",
-      "sha256": "178d606e05ffbfc1cce888f41074fa8e56d12a62b7b53f2ea33f83ad417c5e5f",
-      "bytes": 166
-    },
-    {
       "path": "Microduck数据采集/A-B分级监控规则.md",
-      "sha256": "8c0db7b3da9df321f1ab7cc4e510fb605d3f3efee0ff2aced52e01a100bd095d",
-      "bytes": 1172
+      "sha256": "03f09ce7be85241c8450c73cb42dab89df8e48254c5722842ac991a747403934",
+      "bytes": 6712
     },
     {
       "path": "Microduck数据采集/README.md",
-      "sha256": "441aa3565bb072f0f65e3bee7e03d7dc169282cffdffdcedf8add39fb956462c",
-      "bytes": 1946
+      "sha256": "14338cc15d302901ac0edd7d66fecff19326de5e4295c806005aa738f82c304d",
+      "bytes": 34
     },
     {
       "path": "Microduck数据采集/clean_demo.py",
@@ -47,18 +50,13 @@
     },
     {
       "path": "Microduck数据采集/collector.py",
-      "sha256": "f62d50a1dbe715a3f5e3bb0d7b81eca1781e1da184e9f2d298c11004da5d5fd9",
-      "bytes": 33179
-    },
-    {
-      "path": "Microduck数据采集/config-demo.json",
-      "sha256": "6a3bd9172cf6326e207ab0602c697bcb913ae72d36c6b0e5150f30bb377b0240",
-      "bytes": 1679
+      "sha256": "79bc303b51cf51f57375e867e1b51e42eeaab021db629c5092c0a39617072150",
+      "bytes": 42676
     },
     {
       "path": "Microduck数据采集/config.json",
-      "sha256": "c8fa3116be686a719ec0717a435b12d5f8a4e9b0dbd780fe2eacf75db1ec6041",
-      "bytes": 2913
+      "sha256": "cc34a387ce1e18fc5078ecc770b4a2fb4ea2630c5bcd3b6b2ddc0cfdbc6eb6e8",
+      "bytes": 3184
     },
     {
       "path": "Microduck数据采集/configure_github_keychain.sh",
@@ -71,49 +69,14 @@
       "bytes": 871
     },
     {
-      "path": "Microduck数据采集/demo/API原始响应.jsonl",
-      "sha256": "c45e6c9232108d15e8bf5370aefd5c36f5d685f0b8c3ad623ec7121b332794e5",
-      "bytes": 2163614
-    },
-    {
-      "path": "Microduck数据采集/demo/中文样例.json",
-      "sha256": "293cc681c1f7796ef34b62d0c47c553d37e6efd08ad789375ea0a5be1f4c2263",
-      "bytes": 19556
-    },
-    {
-      "path": "Microduck数据采集/demo/原始记录.json",
-      "sha256": "ff14f98b8a860a0fd468176bbb1e5b71b4cb2e8226aac9565c0e3177a0425b48",
-      "bytes": 1085342
-    },
-    {
-      "path": "Microduck数据采集/demo/清洗后信息.jsonl",
-      "sha256": "970b1b303c1ed40b054a724b6842050ee40faee255e1daf233d6b0edea5e5674",
-      "bytes": 1355979
-    },
-    {
-      "path": "Microduck数据采集/demo/清洗审计.json",
-      "sha256": "45f67ddac65e85297b8b292f81a0aba5be2e9ce07c7ae34f53cdce10f1f2fc93",
-      "bytes": 142223
-    },
-    {
-      "path": "Microduck数据采集/demo/清洗结果示例.md",
-      "sha256": "7eaf39c6ef18a6cc76d851c2b85c015ba357bbedebf03be248322ee4d8e47019",
-      "bytes": 12172
-    },
-    {
-      "path": "Microduck数据采集/demo/清洗统计.json",
-      "sha256": "cc149c6b3b8e439a8d2269c96671acd299e71c19169d2f46b5972723e88ca0cd",
-      "bytes": 1084
-    },
-    {
-      "path": "Microduck数据采集/demo/项目编码样例.json",
-      "sha256": "7996f344d64b88864d88878e37c7c0cd66f23852e828530ccc052bb5bc59cc1e",
-      "bytes": 6676
-    },
-    {
       "path": "Microduck数据采集/feishu/README.md",
-      "sha256": "a44f4f8a5cc7c16b2cbae8e8606239e468cfe90b0d590a5618f0a1df1c260f72",
-      "bytes": 1679
+      "sha256": "1fdbf15da96029121c74d2bf70585872b1c9a2b09e8ca8cf657af762cc319422",
+      "bytes": 2121
+    },
+    {
+      "path": "Microduck数据采集/feishu/card_layout.json",
+      "sha256": "993d1eb532301784d0daf6fdb239e09749a5fd190e185290ec4672b99051200e",
+      "bytes": 114
     },
     {
       "path": "Microduck数据采集/feishu/configure_macos_keychain.sh",
@@ -127,28 +90,28 @@
     },
     {
       "path": "Microduck数据采集/feishu/send_digest.py",
-      "sha256": "6d58d81b7a9d37a188a801f7afc6bbf96b43977aece534be720c1d93d8705657",
-      "bytes": 7443
+      "sha256": "55651ec1c0f9b3d23a60e151923255451081a6f315b3566161c72f557643877b",
+      "bytes": 17968
     },
     {
-      "path": "Microduck数据采集/feishu/state/卡片预览.json",
-      "sha256": "413718ff7a7e32b3c6dddadaf618b0894df6d71037db312b17f0214268e99220",
-      "bytes": 2281
+      "path": "Microduck数据采集/feishu/卡片展示说明.md",
+      "sha256": "295f360ef32d89f15cc41ca420b4ce33b243ae81211391e55c2086da2e33ff17",
+      "bytes": 737
+    },
+    {
+      "path": "Microduck数据采集/hf_monitor.py",
+      "sha256": "ef604a2917af0b0d251690d9f2c3e92adda9c7e726b99120a8a2276a17a8365b",
+      "bytes": 9516
     },
     {
       "path": "Microduck数据采集/monitoring-tiers.json",
-      "sha256": "b8bbf2ef02d26aa880ef0eb44bb59de2e3202bbbd34a7da6444a39228a224b3d",
-      "bytes": 46316
-    },
-    {
-      "path": "Microduck数据采集/pilot/README.md",
-      "sha256": "13d360532c1a6c800cd6f7882dfa760d1e160fa5ac19a3de6c9aeb521e4a7016",
-      "bytes": 2378
+      "sha256": "3f8671ce6f36b14ad4c9c993c8c2b60dcfcc0932c621e77cf31898804af07901",
+      "bytes": 142529
     },
     {
       "path": "Microduck数据采集/pilot/output/日报.md",
-      "sha256": "e3ea9753f1e5e28eb303aae596a1a188097f6c8753218d57c37c9af1834b8877",
-      "bytes": 1682
+      "sha256": "80ca58fcc1d453129ac8a58830b40485d66b61a210730a73e581f47258d6e4db",
+      "bytes": 3868
     },
     {
       "path": "Microduck数据采集/pilot/output/项目记录/Duck on Desk.md",
@@ -241,6 +204,46 @@
       "bytes": 2349
     },
     {
+      "path": "Microduck数据采集/pilot/output/项目记录/P202 AlexWortega_用果蝇神经连接模型控制鸭子.md",
+      "sha256": "5e33f7720aab30229f4470da7fbe727bcf35f2c5d708a774b1baa0e8f7f1280a",
+      "bytes": 1323
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/P307 mishig_鸭子内部结构查看器.md",
+      "sha256": "b62ef1e8be25fa586dac5929c143307fd0d8ea87dc603980f9f9c71c24dff6c0",
+      "bytes": 953
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/P338 RemiFabre_单脚站立与切换.md",
+      "sha256": "9d79bb675fbf73619d46878b121f4986f4b0302e8c70ceaf61e342bf9c672485",
+      "bytes": 1422
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/P396-RemiFabre-grasp.md",
+      "sha256": "8a76566f129885e8aea469577e2c076ff24cf49e62fad14ca4462c382fa38aa3",
+      "bytes": 1091
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/P400-apirrone-footsteps.md",
+      "sha256": "e3aa01256fbda03fb341a74088392ad517b4faba6dbc8f58b619a935c19c2b2b",
+      "bytes": 1352
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/P412-Denys88-rl_games.md",
+      "sha256": "fffa95dc08d3ce2e78855e5a6b6d4b933ebdba7c6c3c3aa9db8b74a242eb2bd4",
+      "bytes": 1608
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/P425-LuwuDynamics-xgoduck_hardware.md",
+      "sha256": "ca88a68aab7fa652c8a29654ce2e62c9246bc2a7d0b8aac8ecd5e0e6b21ce0b1",
+      "bytes": 1715
+    },
+    {
+      "path": "Microduck数据采集/pilot/output/项目记录/P481-kissqy-Microduck-kissqy.md",
+      "sha256": "2f7f59b9733e2a1c7a4f2626336187dfd7dd7ab70d0f9973872a895327cc3f14",
+      "bytes": 1909
+    },
+    {
       "path": "Microduck数据采集/pilot/output/项目记录/Wicroduck.md",
       "sha256": "256e4a0bebbaaf2f4f7b0f143bc7e2b1acfa5e51a25bd9e538c2b1ded58f1c46",
       "bytes": 2238
@@ -302,8 +305,8 @@
     },
     {
       "path": "Microduck数据采集/pilot/output/项目记录/microduck-replica.md",
-      "sha256": "8e10c722e43e3fba6c1f0897fa4424a1f2eca41c12f5f7ba5aee823a9dcfaa1e",
-      "bytes": 6145
+      "sha256": "da2f8af1916091e005e4b65544b9ee571bce67fbc62451093a2bf3fbacc3a814",
+      "bytes": 6961
     },
     {
       "path": "Microduck数据采集/pilot/output/项目记录/microduck-rl-genesis.md",
@@ -347,8 +350,8 @@
     },
     {
       "path": "Microduck数据采集/pilot/output/项目记录/quackd.md",
-      "sha256": "1df3a178bf6cf1fba509d6260b801a8950c714e4b83f02263a6ef7379d3d75cd",
-      "bytes": 2770
+      "sha256": "573ba0803a7b8781e1a359d74fced01c02fafdc01444950f23b9e4624c13618b",
+      "bytes": 3561
     },
     {
       "path": "Microduck数据采集/pilot/output/项目记录/quacksat.md",
@@ -356,54 +359,24 @@
       "bytes": 2701
     },
     {
-      "path": "Microduck数据采集/pilot/pipeline.py",
-      "sha256": "3bae7376b073d8ab76fff7e2130809a97f09f791e3934fd4b4ef0c68f1d95906",
-      "bytes": 26484
+      "path": "Microduck数据采集/project_review.py",
+      "sha256": "07ad01376ee8ca990a19dc56d64b1ed98ad0c7240f7bae4dd275257c5c272b59",
+      "bytes": 11780
     },
     {
-      "path": "Microduck数据采集/pilot/team_digest.json",
-      "sha256": "9c7f1126eb4891c4185fba4fe23293dcdd4a7d7a3270e0dbd0ab97cc4e3b2c79",
-      "bytes": 5058
-    },
-    {
-      "path": "Microduck数据采集/pilot/tests/test_pipeline.py",
-      "sha256": "a7f21d48c9aefdeee7330efc6cfea8163d5a02eab9008a3389dc8c4cd368d34a",
-      "bytes": 18350
-    },
-    {
-      "path": "Microduck数据采集/pilot/日报改写前校验.json",
-      "sha256": "74e885322afbd51b5df63fea4ef78c3977eecbc575c4eacda37fc1a41a9cb31b",
-      "bytes": 1488
-    },
-    {
-      "path": "Microduck数据采集/pilot/日报改写验证.json",
-      "sha256": "1768a500966a222da9f4093d3ea434e47d30255356098cd0142afa0567827251",
-      "bytes": 288
-    },
-    {
-      "path": "Microduck数据采集/pilot/档案与日报设计.md",
-      "sha256": "c8ec22ea0f0340bc79bb2de26a7111b61ea9a1d8133b1556bd3d90e579bc9800",
-      "bytes": 5062
-    },
-    {
-      "path": "Microduck数据采集/pilot/验证记录.json",
-      "sha256": "5f2a47d90724979fe90d176afd70e62d75e909ed4188d82735a28c5d9129cb1a",
-      "bytes": 685
-    },
-    {
-      "path": "Microduck数据采集/selection/update_stars.py",
-      "sha256": "6f99b00557950fa5056191e5eb629c6afd4081cc68c8e1a55525e3219eb0a915",
-      "bytes": 8892
+      "path": "Microduck数据采集/selection/平台来源索引.json",
+      "sha256": "bc6aa8dbdd91cdc7bc37c56ad8e53daa4426758e62a2878d9dae3aa563221e96",
+      "bytes": 1230903
     },
     {
       "path": "Microduck数据采集/selection/项目选择清单.json",
-      "sha256": "0dff7abe2327626f63f28baab5c4234eb0eabdf7f55f83d485d13a398b21ba79",
-      "bytes": 191530
+      "sha256": "e4ee2a4bce125cdbc03d63d0ac48c0a83042463660162e8fd0943066aecf7552",
+      "bytes": 2468377
     },
     {
       "path": "Microduck数据采集/sync_monitoring_tiers.py",
-      "sha256": "b50f6670a41208657f95aa274226466b52d197220a583e88f955828ca1a82ee4",
-      "bytes": 3179
+      "sha256": "837c92b51bc10f39c5ee18f5c4559890e076b6afad12ace3038e64bff8886f4a",
+      "bytes": 6266
     },
     {
       "path": "Microduck数据采集/tests/test_clean_demo.py",
@@ -421,14 +394,19 @@
       "bytes": 561
     },
     {
+      "path": "Microduck数据采集/tests/test_daily_workflow.py",
+      "sha256": "f24590086f7fde969a846fa5874a2b2e788341b8db5aad9820b932b7d5e86e11",
+      "bytes": 13205
+    },
+    {
       "path": "Microduck数据采集/tests/test_feishu_sender.py",
-      "sha256": "bf75e81a38d65c2c7e248e58eebb5d1f627c8c771f843d043d018c49d7091b24",
-      "bytes": 1408
+      "sha256": "6079526dfe2e78dd35c4866c52c5caebc3724bad1f3a8a772ed20f71deee3b56",
+      "bytes": 1399
     },
     {
       "path": "Microduck数据采集/weekly_tier_review.py",
-      "sha256": "5f43934fcef068044a007e058e0189aed0c23edc559cba7361e317d5050459c1",
-      "bytes": 1448
+      "sha256": "200a6305939814bb49b030d26c7c81eee030ca1d9f45d0b069c68239d92f3dad",
+      "bytes": 1565
     },
     {
       "path": "Microduck数据采集/writing-skills/humanizer-zh/LICENSE",
@@ -447,13 +425,18 @@
     },
     {
       "path": "Microduck数据采集/writing-skills/日报推送_飞书群版.md",
-      "sha256": "e806d3c7ea9cf462bbd73268d982727302214451d8b210c811ebb99af11fbe2d",
-      "bytes": 4477
+      "sha256": "0a3492013fe418b78f6dcfa89c36fe9a77e21faef53adcd84ac784e87b66d781",
+      "bytes": 2208
     },
     {
       "path": "Microduck数据采集/writing-skills/日报推送定稿.md",
       "sha256": "ed892573aa807732589166ef37beb696f6e986b39f97d15bf6c91b4b5e1d7571",
       "bytes": 5781
+    },
+    {
+      "path": "Microduck数据采集/writing-skills/日报语言要求.md",
+      "sha256": "1bc21a2218cf8e4d16fc19b63e44d7905d3909f97ab2b6574cfbb675ebdbb164",
+      "bytes": 2611
     },
     {
       "path": "Microduck数据采集/writing-skills/日报风格基准.json",
@@ -466,44 +449,49 @@
       "bytes": 1605
     },
     {
-      "path": "Microduck数据采集/平台API接入调研.md",
-      "sha256": "3e650d60af99fa604b013e02ad98bf49ba19973e442462a7cc792653b4c1d0df",
-      "bytes": 6754
-    },
-    {
       "path": "Microduck数据采集/调研任务书.md",
-      "sha256": "154fefd8936d535d47927f3bf86a36a54089e9bbea73f56662957523d51950ae",
-      "bytes": 27635
+      "sha256": "4fd4ec9bc0c1c5f42fa138f5127d0cb455a7674e75dd7aa5920062c37570546e",
+      "bytes": 1528
     },
     {
-      "path": "Microduck数据采集/连接流程.md",
-      "sha256": "4b7d5edd3ed8b1c10747507277dd6d753a008e7be1272c757061ba1eef798f83",
-      "bytes": 4222
+      "path": "OPEN_SOURCE_README.md",
+      "sha256": "ae679e1ea770ce5560711ba7223c87e743afe8a1b458067cfe17c978d70d70a9",
+      "bytes": 5420
     },
     {
-      "path": "Microduck项目候选清单.md",
-      "sha256": "7366b30135002e09c7535639623d7fc27e06312df1d1503c75aac890cdfb3a19",
-      "bytes": 63785
+      "path": "PUBLIC_TASKBOOK.md",
+      "sha256": "4fd4ec9bc0c1c5f42fa138f5127d0cb455a7674e75dd7aa5920062c37570546e",
+      "bytes": 1528
+    },
+    {
+      "path": "README.md",
+      "sha256": "ae679e1ea770ce5560711ba7223c87e743afe8a1b458067cfe17c978d70d70a9",
+      "bytes": 5420
     },
     {
       "path": "SETUP.md",
-      "sha256": "4752c7f50a92ff4501bef8e0943fed71cb560088d4040db66a2068ede7f44a1c",
-      "bytes": 2215
+      "sha256": "ee6bd6202c9622bd87998bf2c205a9d475635906d1a788475f100e2d051aad40",
+      "bytes": 2595
     },
     {
-      "path": "automations/09-00-research.md",
-      "sha256": "48cd0eccfa775280526a009c2d79b491ddd9b98cba58623b82a379f622e3a283",
-      "bytes": 758
+      "path": "automations/08-00-research.md",
+      "sha256": "904b53bcafc4f36d0cb3c78d90b5fc8f2ca7b294525992c0ac62b0cb27a83548",
+      "bytes": 1104
     },
     {
       "path": "automations/09-30-delivery.md",
-      "sha256": "35d9c6472a69aa693323f4d32fa1a449b091e7d417cb7041dfcbf9520b4f1204",
-      "bytes": 397
+      "sha256": "f921ba38e8c0e1ca5790a31c71624ffa21ffdc5bacae2c1785aace8d5cfb6e28",
+      "bytes": 551
+    },
+    {
+      "path": "automations/sunday-16-00-gap-review.md",
+      "sha256": "0d071b6580e533f6109ffffff710055c7d993775f4e0b95b7ef484e08cc4f269",
+      "bytes": 657
     },
     {
       "path": "config.example.json",
-      "sha256": "bf7e6371309d0716a680ecaae90ec239dfe7f2103be0a36eed2cc2017051439e",
-      "bytes": 436
+      "sha256": "3f0940dee198e51508f46169dfdb10cc47ed6f7d59260cf87c8eceaf11379c57",
+      "bytes": 783
     },
     {
       "path": "credentials.example.env",
@@ -511,9 +499,19 @@
       "bytes": 122
     },
     {
+      "path": "examples/daily-digest-2026-10-29.md",
+      "sha256": "d99d7ece484bcaab7b4fd0eb4c7c1cecf91b27a5da189287bf0079c841e3187d",
+      "bytes": 4351
+    },
+    {
       "path": "scripts/check_environment.py",
       "sha256": "17125fb81a2cdd3b618ad5c0c97a0b155bbfc9acc2c363f2392482947b39ac68",
       "bytes": 1217
+    },
+    {
+      "path": "scripts/export_catalog.py",
+      "sha256": "627b0916e14dea98d8a08c868a62a4a74c1acdb3c808f82fedb65f6a0bab72dc",
+      "bytes": 1007
     },
     {
       "path": "scripts/install.py",
@@ -522,13 +520,8 @@
     },
     {
       "path": "scripts/package_for_github.py",
-      "sha256": "2d96a6a5093a08cbf233222a708c3267231dff95bd14658d97847014e4f6751e",
-      "bytes": 2730
-    },
-    {
-      "path": "scripts/package_for_handoff.py",
-      "sha256": "0600b8d8fa340e6e5a8a0860811c303af3b8474d9d2e5f54ee863c96f93dc1a1",
-      "bytes": 2013
+      "sha256": "b41891e59cc8c8ba706cb07a0745a47ecd6ef83c1a66d2356f05a7e2d85e1816",
+      "bytes": 5074
     }
   ]
 }

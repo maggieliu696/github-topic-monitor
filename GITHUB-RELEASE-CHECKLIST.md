@@ -1,9 +1,8 @@
-# GitHub 发布前检查
+# v0.2.0-preview发布检查
 
-- [x] 已选择 MIT License，版权署名为 `maggieliu696`。
-- [ ] 已确认是否公开 Microduck 项目候选清单和 41 份研究档案。
-- [ ] 已在解压后的开源包上运行全部离线测试。
-- [ ] 已扫描 Token、Webhook、签名密钥、本机用户名和绝对路径。
-- [ ] 仓库不包含 `data/`、`runs/`、`.env`、发送日志和 macOS 预编译二进制文件。
-- [ ] 已根据实际 GitHub 仓库地址补充联系方式和 Issue 链接。
-- [ ] 第一个公开版本已标记为预览版，不承诺全平台无人值守运行。
+- 运行scripts/package_for_github.py生成白名单源码包和SHA256。
+- 从解压包运行环境检查、完整离线测试、HF基线初始化、CSV导出及卡片预览。
+- 扫描真实Token、Webhook、密钥、用户路径、对话ID；不输出匹配到的秘密内容。
+- 确认data、runs、huggingface-runs、feishu/state、node_modules和预编译二进制没有进入源码包。
+- 保留MIT和第三方许可证；来源示例不改变第三方权利。
+- GitHub推送是独立步骤；本地打包完成不表示远端已更新。

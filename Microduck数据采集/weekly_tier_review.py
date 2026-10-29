@@ -10,7 +10,9 @@ OUTPUT=ROOT/'weekly-tier-review.json'
 
 def build(data):
     groups=defaultdict(list)
-    for project in data['projects']:groups[project['direction']].append(project)
+    for project in data['projects']:
+        if project.get('initialization_status')=='pending' or project.get('tier') not in {'A','B'}:continue
+        groups[project['direction']].append(project)
     result=[]
     for direction,projects in sorted(groups.items()):
         ranked=sorted(projects,key=lambda x:(-(x.get('stars') or 0),x['repo']))

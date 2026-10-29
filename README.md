@@ -1,155 +1,79 @@
 # GitHub Topic Monitor
 
-[English](#english) | [中文](#中文)
+**v0.2.0-preview · GitHub + Hugging Face · Agent-operated topic monitoring**
+
+[English](#english) · [中文](#中文)
 
 ## English
 
-GitHub Topic Monitor is an agent-operated framework for discovering and continuously tracking GitHub projects around a chosen topic. A Python collector retrieves and compares public data first; an agent then reads only meaningful changes and turns them into human-readable project records and daily digests.
+Track an open-source topic across GitHub and Hugging Face. Python retrieves public API data and compares snapshots; a local agent reviews meaningful changes, groups related sources into projects, maintains readable records and writes daily digests. Microduck is the included public-data example, not a fixed requirement.
 
-### What it does
+See a [real daily digest demo (Chinese, 2026-10-29)](examples/daily-digest-2026-10-29.md). It is a dated example, not live news.
 
-- Discovers new repositories through the official GitHub API.
-- Tracks repository metadata, README files, issues, comments, releases, and stars.
-- Uses content fingerprints and incremental comparison to skip unchanged material.
-- Splits projects into deep-monitoring Tier A and lightweight Tier B to control model usage.
-- Maintains one readable dossier for each project.
-- Produces concise daily reports from evidence-backed changes.
-- Sends signed, deduplicated message cards through a Feishu custom bot.
-- Provides `AGENTS.md`, setup checks, automation templates, and beginner-friendly troubleshooting so another local agent can take over the project.
+### Capabilities
 
-The repository includes the Microduck open-source robotics ecosystem as a working example. The collector itself does not infer sentiment or market conclusions; an agent forms those judgments after reading the linked public evidence.
+- GitHub discovery and repository metadata, README, issue/comment and release monitoring.
+- HF model/dataset/Space discovery, metadata, Tier-A README and discussion-list change queues. New discussion text may require the agent to open the source; this is not exhaustive monitoring of every comment or file.
+- Shared project IDs across platforms; version grouping and merges are evidence-based agent decisions, not automatic semantic matching.
+- Tier A detailed monitoring, Tier B lightweight tracking, Monday reclassification and Sunday gap review templates.
+- One readable record per Tier-A project, a unified project list and plain-language daily digests.
+- Feishu cards with a configurable title and collapsed body, readiness checks and duplicate-send prevention.
+- Portable CSV export readable in Excel; no private spreadsheet runtime is bundled.
 
 ### Quick start
 
-Python 3.10 or newer is required. The collector uses only the Python standard library.
+Python 3.10+, network access to both APIs and a local agent are required. Core Python commands use the standard library.
 
 ```sh
 python3 scripts/check_environment.py
 python3 scripts/install.py --mode continue
-python3 -m unittest discover -s Microduck数据采集/tests -p "test_*.py"
+python3 -m unittest discover -s Microduck数据采集/tests -p 'test_*.py'
 ```
 
-Configure a read-only `GITHUB_TOKEN`, then run:
+Configure your own read-only GitHub token, then run through your agent:
 
 ```sh
 python3 Microduck数据采集/sync_monitoring_tiers.py
 python3 Microduck数据采集/collector.py
-```
-
-Preview a Feishu card without sending it:
-
-```sh
+python3 Microduck数据采集/hf_monitor.py
+python3 scripts/export_catalog.py
 python3 Microduck数据采集/feishu/send_digest.py --dry-run
 ```
 
-See [AGENTS.md](AGENTS.md) for agent takeover, [SETUP.md](SETUP.md) for installation, and [BEGINNER-TROUBLESHOOTING.md](BEGINNER-TROUBLESHOOTING.md) for common problems.
+**Scripts alone do not complete research.** The agent must process pending queues, verify project links, update records, write a current digest and approve the completed batch before delivery. The included catalog/digest are dated examples, not a fresh baseline or ready-to-send report. Schedules must be created in your own agent environment; unzipping does not create scheduled tasks.
 
-### Current scope
-
-- The production collector currently supports GitHub only.
-- Report analysis requires a local agent capable of reading files and running scheduled work.
-- Feishu delivery requires credentials for the user's own custom bot.
-- Local schedules require the computer, network, and agent runtime to be available.
-
-Licensed under the [MIT License](LICENSE). Copyright (c) 2026 `maggieliu696`.
-
----
+See [AGENTS.md](AGENTS.md), [SETUP.md](SETUP.md), and [CHANGELOG.md](CHANGELOG.md). `--mode new-topic` creates a questionnaire only; the agent must also update actual collector queries, categories and example lists. This is a preview framework, not a hosted service or guaranteed exhaustive market monitor.
 
 ## 中文
 
-GitHub Topic Monitor 是一个由 Agent 接管的 GitHub 主题监控框架。用户可以指定一个主题，持续发现相关项目、追踪已有项目变化，并生成给人阅读的项目档案和每日摘要。它先用 Python 通过官方 API 采集和比较变化，再让 Agent 只阅读需要理解的增量。
+这是一套由本地Agent配合Python运行的主题监控框架，已覆盖GitHub和Hugging Face。程序先取数、比较变化，Agent再判断哪些变化重要，整理成项目记录和日报。
 
-仓库内附带 Microduck 开源机器鸭生态作为完整示例。它展示了如何监控一个主题、管理 A/B 项目、跟踪变化并推送日报。
+先看[真实日报 Demo（2026年10月29日）](examples/daily-digest-2026-10-29.md)，了解最后收到的内容是什么样。它是历史样例，不是实时资讯。
 
-## 能做什么
+### 别人拿来可以做什么
 
-- 使用 GitHub 官方 API 搜索新项目并监控已有项目；
-- 保存原始响应、来源链接、采集时间和前后变化；
-- 比较仓库更新、README、Issue、评论、Release 和 Star；
-- 用内容指纹跳过未变化内容，减少 Agent 阅读量；
-- 用 A/B 分级平衡覆盖范围与模型成本；
-- 为每个项目保留一份可读档案；
-- 将重要变化组织成日报；
-- 通过飞书自定义机器人发送消息卡片；
-- 通过 `AGENTS.md` 让另一个 Agent 完成环境检查、配置、测试和定时任务创建。
+1. **继续研究机器鸭。** 用附带的公开Microduck清单作起点，重新建立自己的采集基线，跟踪新项目、开发问题和应用进展。
+2. **改成自己的监控主题。** 例如机器人、AI开发工具等。先与Agent确定范围、分类、关键词、读者和推送节奏，再改实际采集配置。不是只改项目名称就完成迁移。
+3. **搭建团队资讯日报。** 重点项目保留一篇可读记录，普通项目只维护总表；每天只把值得看的变化发送到自己的飞书群。
+4. **借用其中一个环节。** 单独复用GitHub/HF采集、增量筛选、项目归并规则、日报写作要求或折叠卡片发送程序。
 
-## 工作流程
+### 怎么运行
 
 ```text
-GitHub API
-   ↓
-Python 采集、去重和差异比较
-   ↓
-A 级深检查 / B 级轻量检查
-   ↓
-Agent 阅读实质变化
-   ↓
-项目档案 → 日报 → 飞书机器人
+GitHub / HF官方API → 保存数据、比较变化 → Agent判断和归并
+→ 项目总表 / A类项目唯一记录 → 通俗日报 → 飞书折叠卡片
 ```
 
-Python 程序不会自动推断用户态度或市场结论。这些工作由 Agent 在阅读原文后完成。
+安装与命令见上方Quick start和[SETUP.md](SETUP.md)。核心Python程序只用标准库；CSV可用Excel打开。运行仍需要自己的网络、GitHub凭证、Agent和可选的飞书机器人。HF当前使用公开接口，不保证永久免费或额度无限。
 
-## 快速开始
+### 需要知道的边界
 
-需要 Python 3.10 或更高版本。采集器只使用 Python 标准库。
+- 不是安装即自动生成结论的软件：相关性、跨平台合并、A/B调整和报告撰写仍需Agent阅读证据。
+- HF和GitHub信息深度不同，不保证读取所有讨论正文、代码变动或外部视频。
+- 示例快照包含过去收集的公开信息，不代表使用者已完成当日检查，也不能用于推算用户人数或市场份额。
+- 新主题初始化脚本只创建草稿，仍需同步真正的config.json和项目清单。定时任务需由新用户重新创建。
+- 不包含原使用者的Token、Webhook、数据库、原始运行结果、发送记录或现成自动任务。遇到请求失败要报告缺口，不能当成“没有变化”。
 
-```sh
-python3 scripts/check_environment.py
-python3 scripts/install.py --mode continue
-python3 -m unittest discover -s Microduck数据采集/tests -p "test_*.py"
-```
+代码为[MIT](LICENSE)，版权署名maggieliu696；Humanizer-zh保留其原有许可证。公开来源中的第三方项目内容仍归其原作者，本框架的MIT许可不替第三方资料重新授权。
 
-配置 GitHub 只读 Token 后：
-
-```sh
-python3 Microduck数据采集/sync_monitoring_tiers.py
-python3 Microduck数据采集/collector.py
-```
-
-预览飞书卡片，不发送消息：
-
-```sh
-python3 Microduck数据采集/feishu/send_digest.py --dry-run
-```
-
-完整的 Agent 接管顺序见 [AGENTS.md](AGENTS.md)，安装与凭证配置见 [SETUP.md](SETUP.md)，小白故障处理见 [BEGINNER-TROUBLESHOOTING.md](BEGINNER-TROUBLESHOOTING.md)。
-
-## 凭证
-
-项目可读取以下环境变量：
-
-- `GITHUB_TOKEN` 或 `GH_TOKEN`；
-- `FEISHU_BOT_WEBHOOK`；
-- `FEISHU_BOT_SECRET`。
-
-macOS 用户也可使用钥匙串辅助脚本。不要将真实凭证写入仓库。
-
-## 目录
-
-```text
-AGENTS.md                         Agent 接管规则
-SETUP.md                          安装与验收
-BEGINNER-TROUBLESHOOTING.md       小白故障处理
-automations/                      定时任务模板
-scripts/                          环境检查与初始化
-Microduck数据采集/collector.py      GitHub 采集器
-Microduck数据采集/config.json       Microduck 示例配置
-Microduck数据采集/tests/            离线测试
-Microduck数据采集/writing-skills/   日报写作模板
-```
-
-## 当前边界
-
-- 当前正式采集器只监控 GitHub；
-- 日报分析需要一个能执行本地任务的 Agent；
-- 飞书发送需要使用者自己的机器人凭证；
-- 本地定时任务需要电脑在运行时开机、联网且 Agent 可用；
-- Microduck 项目档案是公开 GitHub 信息的研究示例，不代表项目作者对本仓库的认可。
-
-## 安全
-
-发现凭证泄漏或安全问题时，请不要在公开 Issue 中张贴密钥或 Webhook。先撤销已泄漏凭证，再通过仓库维护者公开的私密联系方式报告。
-
-## 许可证
-
-项目代码使用 [MIT License](LICENSE)。`writing-skills/humanizer-zh` 保留其自带许可证。
+仓库与问题反馈：[GitHub Topic Monitor](https://github.com/maggieliu696/github-topic-monitor)。

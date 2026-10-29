@@ -7,13 +7,13 @@
       "产品评价"
     ],
     "timezone": "Asia/Shanghai",
-    "daily_time": "09:00",
+    "daily_time": "08:00",
     "proposed_initial_lookback_days": 30,
     "active_platforms": [
-      "github"
+      "github",
+      "huggingface"
     ],
-    "tracked_project_count": 41,
-    "candidate_project_count": 125
+    "delivery_time": "09:30"
   },
   "github": {
     "tier_file": "monitoring-tiers.json",
@@ -74,16 +74,28 @@
     "tracked_baseline_exists": true,
     "repo_limit": 200,
     "max_pages": 5,
-    "max_requests": 1500
+    "max_requests": 1500,
+    "basic_catalog_mode": true,
+    "main_project_focus": true,
+    "reuse_today_completed": true
   },
   "huggingface": {
     "repos": [],
-    "repo_types": [],
-    "queries": [],
+    "repo_types": [
+      "models",
+      "datasets",
+      "spaces"
+    ],
+    "queries": [
+      "microduck"
+    ],
     "repo_limit": 100,
     "discussion_pages": 4,
     "max_requests": 0,
-    "enabled": false
+    "enabled": true,
+    "runner": "hf_monitor.py",
+    "catalog": "selection/平台来源索引.json",
+    "mode": "separate_lightweight_monitor"
   },
   "hackernews": {
     "stories": [],
@@ -98,7 +110,7 @@
   },
   "execution": {
     "enabled": true,
-    "status": "github_incremental_collection_enabled",
+    "status": "github_hf_agent_workflow",
     "reason": "先由程序比较仓库信号和内容指纹，只把正文或状态发生实质变化的增量交给Agent。"
   }
 }

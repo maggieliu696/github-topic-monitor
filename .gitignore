@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.env
+local-project-config.json
+Microduck数据采集/data/
+Microduck数据采集/runs/
+Microduck数据采集/huggingface-runs/
+Microduck数据采集/feishu/state/
+outputs/

@@ -91,6 +91,10 @@ class Store:
         CREATE TABLE IF NOT EXISTS cache(url TEXT PRIMARY KEY,etag TEXT,modified TEXT,body BLOB,headers TEXT);
         CREATE TABLE IF NOT EXISTS state(key TEXT PRIMARY KEY,value TEXT);
         CREATE TABLE IF NOT EXISTS runs(id TEXT PRIMARY KEY,started TEXT,finished TEXT,summary TEXT);
+        CREATE TABLE IF NOT EXISTS project_reviews(repo TEXT PRIMARY KEY,status TEXT,payload TEXT,
+          first_seen TEXT,last_seen TEXT,reviewed_at TEXT);
+        CREATE TABLE IF NOT EXISTS project_review_log(id INTEGER PRIMARY KEY AUTOINCREMENT,
+          repo TEXT,status TEXT,payload TEXT,at TEXT);
         ''')
         self.db.commit()
     def state(self, k, default=None):
@@ -125,6 +129,36 @@ class Store:
         return change
     def rows(self,sql,args=()):
         with self.lock: return self.db.execute(sql,args).fetchall()
+    def candidate(self, repo, evidence):
+        """Discoveries remain pending until an Agent records an explicit decision."""
+        with self.lock:
+            old=self.db.execute('SELECT * FROM project_reviews WHERE repo=?',(repo,)).fetchone()
+            payload=json.loads(old['payload']) if old else {}
+            payload.update(evidence)
+            status=old['status'] if old else 'pending'
+            decision=payload.get('decision') or {}
+            pushed=evidence.get('pushed_at')
+            if status in {'excluded','merged'} and decision.get('review_type')=='upstream_copy' and pushed and pushed!=(decision.get('observed_signal')or{}).get('pushed_at'):
+                status='pending'
+                payload['reopened_reason']='上次按上游副本处理，现有新的推送，重新核查独立工作'
+            self.db.execute('INSERT OR REPLACE INTO project_reviews VALUES(?,?,?,?,?,?)',
+                (repo,status,dump(payload),
+                 old['first_seen'] if old else now(),now(),old['reviewed_at'] if old else None))
+            self.db.commit()
+    def pending_candidates(self):
+        return [dict(json.loads(r['payload']),repo=r['repo'],status=r['status'])
+                for r in self.rows("SELECT * FROM project_reviews WHERE status='pending' ORDER BY first_seen,repo")]
+    def decide_candidate(self,repo,status,evidence):
+        if status not in {'accepted','excluded','merged'}:raise ValueError('无效的项目处理状态')
+        with self.lock:
+            row=self.db.execute('SELECT * FROM project_reviews WHERE repo=?',(repo,)).fetchone()
+            if not row:raise ValueError('候选不存在：'+repo)
+            payload=json.loads(row['payload']);payload['decision']=evidence
+            self.db.execute('UPDATE project_reviews SET status=?,payload=?,reviewed_at=? WHERE repo=?',
+                            (status,dump(payload),now(),repo))
+            self.db.execute('INSERT INTO project_review_log(repo,status,payload,at) VALUES(?,?,?,?)',
+                            (repo,status,dump(evidence),now()))
+            self.db.commit()
 
 class Redirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
@@ -223,95 +257,169 @@ class Collector:
     def put(self,record):
         change=self.s.put(self.run,record);self.seen.add(record['id']);return change
     def github_tiers(self):
-        path=ROOT/self.cfg['github'].get('tier_file','monitoring-tiers.json')
-        data=json.loads(path.read_text()) if path.exists() else {'projects':[]}
-        tiers={x['repo']:x.get('tier','B') for x in data.get('projects',[])}
+        configured=self.cfg['github'].get('tier_file')
+        path=ROOT/configured if configured else None
+        data=json.loads(path.read_text()) if path and path.exists() else {'projects':[]}
+        tiers={x['repo']:x.get('tier') or 'pending' for x in data.get('projects',[])}
         for repo in self.cfg['github'].get('background_repos',[]):tiers.setdefault(repo,'A')
         if not tiers:tiers.update({r:'A' for r in self.cfg['github'].get('repos',[])})
         return tiers
     def star_trigger(self,repo,stars):
         if stars is None:return None
         key='gh:stars:'+repo;history=self.s.state(key,[])
-        today=dt.datetime.now(UTC).date().isoformat()
-        history=[x for x in history if x.get('date')!=today]
+        today=dt.datetime.now(dt.timezone(dt.timedelta(hours=8))).date().isoformat()
+        history=sorted((x for x in history if x.get('date')!=today),key=lambda x:x['date'])
         prior=history[-1]['stars'] if history else stars
         history.append({'date':today,'stars':stars});history=history[-35:]
         self.s.set(key,history)
         if stars-prior>=50:return {'reason':'star_absolute_growth','before':prior,'after':stars}
-        cutoff=dt.datetime.now(UTC).date()-dt.timedelta(days=7)
-        old=next((x for x in history if dt.date.fromisoformat(x['date'])<=cutoff),None)
+        cutoff=dt.date.fromisoformat(today)-dt.timedelta(days=7)
+        # Only a real observation on that date is a seven-day comparison.
+        old=next((x for x in history if dt.date.fromisoformat(x['date'])==cutoff),None)
         if old and stars-old['stars']>=5 and stars>old['stars']*1.2:
-            return {'reason':'star_7d_growth','before':old['stars'],'after':stars}
+            return {'reason':'star_7d_growth','before':old['stars'],'after':stars,'from_date':old['date'],'to_date':today}
         return None
     def github(self):
         p='github';tiers=self.github_tiers();seeds=list(tiers);discovered={}
+        basic_mode=self.cfg['github'].get('basic_catalog_mode',False)
+        # Recover old unreviewed discoveries, not just matches first seen in this run.
+        # Forks need an evidence-based duplicate decision too.
+        for row in self.s.rows("SELECT payload FROM items WHERE platform='github' AND kind='repository_candidate'"):
+            old=json.loads(row['payload']);repo=old.get('title')
+            if repo and repo not in tiers:
+                self.s.candidate(repo,{'url':old['url'],'description':old.get('body'),
+                    'author':old.get('author'),'stars':old.get('meta',{}).get('stars'),
+                    'fork':old.get('meta',{}).get('fork'),'reason':'待去重、判断相关性并完成初始化'})
         for query in self.cfg['github']['queries']:
             url='https://api.github.com/search/repositories?'+qs({'q':query,'sort':'updated','per_page':100})
             for page in self.c.pages(p,url,self.cfg['github']['search_pages'],strict=False):
                 if page.get('incomplete_results'):self.c.warn(p,'GitHub搜索返回incomplete_results，候选发现不完整。')
                 for r in page['items']:
                     discovered[r['full_name']]=r
-                    change=self.put(item(p,'repo:'+str(r['id']),'repository_candidate',r['full_name'],r['html_url'],
+                    self.put(item(p,'repo:'+str(r['id']),'repository_candidate',r['full_name'],r['html_url'],
                         r.get('description'),r['owner']['login'],r.get('updated_at'),
-                        fork=r.get('fork'),created_at=r.get('created_at'),stars=r.get('stargazers_count'),stars_observed_at=now(),
+                        fork=r.get('fork'),created_at=r.get('created_at'),stars=r.get('stargazers_count'),
+                        forks=r.get('forks_count'),open_issues=r.get('open_issues_count'),
+                        watchers=r.get('subscribers_count'),stars_observed_at=now(),
                         interpretation='关键词候选，不自动纳入独立项目或买家统计'))
-                    if change=='first_observed' and r['full_name'] not in tiers and not r.get('fork'):
-                        self.new_candidates.append({'repo':r['full_name'],'url':r['html_url'],'description':r.get('description'),
-                            'author':r['owner']['login'],'stars':r.get('stargazers_count'),'reason':'首次搜索到，待去重和相关性判断'})
-        names=sorted(seeds,key=lambda r:(0 if tiers[r]=='A' else 1,self.s.state('gh:checked:'+r,''),r))
+                    if r['full_name'] not in tiers:
+                        self.s.candidate(r['full_name'],{'url':r['html_url'],'description':r.get('description'),
+                            'author':r['owner']['login'],'stars':r.get('stargazers_count'),'fork':r.get('fork'),'pushed_at':r.get('pushed_at'),
+                            'reason':'待去重、判断相关性并完成初始化'})
+        for repo in seeds:
+            if tiers[repo]=='pending':self.s.candidate(repo,{'url':'https://github.com/'+repo,'reason':'已确认相关，尚未完成初始化，暂不分级'})
+        self.new_candidates=self.s.pending_candidates()
+        # All candidates must be decided by the Agent. Fetch their basic evidence;
+        # confirmed projects receive a full baseline before an A/B tier is assigned.
+        pending_names={x['repo'] for x in self.new_candidates}
+        names=sorted(set(seeds)|pending_names,key=lambda r:(0 if tiers.get(r)=='A' else 1,self.s.state('gh:checked:'+r,''),r))
         self.coverage[p]={'planned_repositories':len(names),'seed_repositories':len(seeds),'completed_repositories':0,
                           'a_repositories':sum(x=='A' for x in tiers.values()),'b_repositories':sum(x=='B' for x in tiers.values()),
+                          'initialization_pending':len(pending_names),
                           'discovered_candidates':len(discovered),'new_candidates_to_classify':len(self.new_candidates),
                           'authenticated':bool(self.c.tokens.get(p))}
-        for repo in names[:self.cfg['github']['repo_limit']]:
+        for repo in names:
             start=now();last=self.s.state('gh:checked:'+repo)
+            # 同一天中断续跑可复用已完成的检查；保留原观察时间，不冒充刚刚取数。
+            baseline=self.s.state('gh:baseline:'+repo)
+            old_signal=self.s.state('gh:signal:'+repo)
+            found=discovered.get(repo)
+            latest_signal={k:found.get(k) for k in ('pushed_at','updated_at','default_branch','archived','disabled')} if found else None
+            same_day=bool(last and dt.datetime.fromisoformat(last).astimezone(dt.timezone(dt.timedelta(hours=8))).date()==dt.datetime.now(dt.timezone(dt.timedelta(hours=8))).date())
+            if self.cfg['github'].get('reuse_today_completed',True) and same_day and baseline and old_signal and (latest_signal is None or latest_signal==old_signal) and not (tiers.get(repo)=='A' and baseline.get('mode')=='basic'):
+                self.coverage[p]['completed_repositories']+=1
+                self.coverage[p]['reused_today_completed_repositories']=self.coverage[p].get('reused_today_completed_repositories',0)+1
+                continue
             try:
                 url='https://api.github.com/repos/'+repo
                 r=discovered.get(repo)
                 if r is None:r,_=self.c.get(p,url,optional=True)
-                if not r:continue
+                if not r:
+                    if repo in pending_names and repo not in seeds:
+                        self.coverage[p].setdefault('unavailable_candidates',[]).append({'repo':repo,'url':url,'status':404,'meaning':'官方接口无法读取，候选须保留访问结果并单独判定'})
+                    continue
                 repo_change=self.put(item(p,'repo:'+str(r['id']),'repository_candidate',r['full_name'],r['html_url'],
                     r.get('description'),r['owner']['login'],r.get('updated_at'),fork=r.get('fork'),created_at=r.get('created_at'),
                     stars=r.get('stargazers_count'),forks=r.get('forks_count'),open_issues=r.get('open_issues_count'),
                     watchers=r.get('subscribers_count'),stars_observed_at=now()))
                 star_alert=self.star_trigger(repo,r.get('stargazers_count'))
-                if star_alert:self.tier_review.append({'repo':repo,'tier':tiers[repo],**star_alert})
+                if star_alert:self.tier_review.append({'repo':repo,'tier':tiers.get(repo,'pending'),**star_alert})
 
                 # First compare the inexpensive repository signal. If neither code nor repository
                 # metadata changed, the expensive README/issues/comments/releases scan is skipped.
                 signal={k:r.get(k) for k in ('pushed_at','updated_at','default_branch','archived','disabled')}
                 signal_key='gh:signal:'+repo
                 previous_signal=self.s.state(signal_key)
-                # The tracked repositories already have readable baseline dossiers. On the first
-                # incremental run, establish their machine baseline without asking the model to
-                # reread all historical content.
-                if previous_signal is None and repo in seeds and self.cfg['github'].get('tracked_baseline_exists',False):
-                    self.s.set(signal_key,signal)
-                    self.s.set('gh:checked:'+repo,start)
-                    self.coverage[p]['completed_repositories']+=1
-                    self.coverage[p]['baselines_initialized']=self.coverage[p].get('baselines_initialized',0)+1
-                    continue
-                if previous_signal==signal:
+                baseline_key='gh:baseline:'+repo
+                baseline=self.s.state(baseline_key)
+                # A repository timestamp alone is not a project initialization.
+                needs_a_baseline=tiers.get(repo)=='A' and baseline and baseline.get('mode')=='basic'
+                if previous_signal==signal and baseline and not needs_a_baseline:
                     self.s.set('gh:checked:'+repo,start)
                     self.coverage[p]['completed_repositories']+=1
                     self.coverage[p]['skipped_unchanged_repositories']=self.coverage[p].get('skipped_unchanged_repositories',0)+1
+                    continue
+                if self.cfg['github'].get('main_project_focus') and r.get('fork'):
+                    # 只取上游归属，不为派生副本逐条读取说明、问题和版本。
+                    if not r.get('parent'):
+                        full,_=self.c.get(p,url,optional=True)
+                        if full:r=full
+                    parent=(r.get('parent') or {}).get('full_name')
+                    if repo in pending_names:
+                        self.s.candidate(repo,{'evidence_run':self.run,'repo_id':r['id'],'author':r['owner']['login'],
+                            'stars':r.get('stargazers_count'),'stars_observed_at':now(),'fork':True,
+                            'upstream_repository':parent,'source_only':True,
+                            'reason':'Fork按主项目优先规则归并为附属资料，不单独初始化或升A'})
+                    self.s.set('gh:checked:'+repo,start);self.s.set(signal_key,signal)
+                    self.s.set(baseline_key,{'completed_at':now(),'run':self.run,'mode':'source_only'})
+                    self.coverage[p]['completed_repositories']+=1
+                    self.coverage[p]['fork_source_only_checks']=self.coverage[p].get('fork_source_only_checks',0)+1
                     continue
                 readme,_=self.c.get(p,url+'/readme',optional=True)
                 if readme and readme.get('encoding')=='base64':
                     body=base64.b64decode(readme['content']).decode('utf-8',errors='replace')
                     readme_change=self.put(item(p,'readme:'+str(r['id']),'project_readme',repo,readme.get('html_url',r['html_url']),
                         body,r['owner']['login'],None,sha=readme.get('sha'),seed=repo in seeds))
-                    if tiers[repo]=='B' and readme_change in ('first_observed','changed'):
+                    if tiers.get(repo)=='B' and readme_change in ('first_observed','changed'):
                         self.tier_review.append({'repo':repo,'tier':'B','reason':'readme_changed','url':readme.get('html_url',r['html_url'])})
-                # B 级不日常扫描 Issue、评论和 Release。触发后才进入升级审查。
-                if tiers[repo]=='B':
+                if repo in pending_names:
+                    self.s.candidate(repo,{'evidence_run':self.run,'readme_checked':True,
+                        'readme_available':bool(readme),'author':r['owner']['login'],
+                        'stars':r.get('stargazers_count'),'stars_observed_at':now(),'repo_id':r['id'],'url':r['html_url']})
+                # Catalog mode permits B/new candidates to finish a light scan without a document.
+                if basic_mode and tiers.get(repo)!='A':
+                    # Read one recent issue-list page and release page for promotion clues;
+                    # do not fetch comment threads or all historical pages for B projects.
+                    light_issues=[];light_releases=[]
+                    for page in self.c.pages(p,url+'/issues?'+qs({'state':'all','sort':'updated','direction':'desc','per_page':10}),1,strict=False):
+                        for x in page:
+                            light_issues.append({'id':x['id'],'title':x.get('title'),'url':x.get('html_url'),
+                                'updated_at':x.get('updated_at'),'state':x.get('state'),'is_pull_request':'pull_request' in x})
+                    for page in self.c.pages(p,url+'/releases?per_page=5',1,strict=False):
+                        for x in page:light_releases.append({'id':x['id'],'title':x.get('name') or x.get('tag_name'),
+                            'url':x.get('html_url'),'published_at':x.get('published_at')})
+                    evidence={'issues':light_issues,'releases':light_releases}
+                    event_key='gh:light-events:'+repo;previous_events=self.s.state(event_key)
+                    if evidence!=previous_events and (light_issues or light_releases):
+                        self.tier_review.append({'repo':repo,'tier':tiers.get(repo,'pending'),
+                            'reason':'light_events_changed','events':evidence,
+                            'interpretation':'升级线索，首次取得不等于当天新增；深读后确认是否升级'})
+                    if repo_change=='changed':self.tier_review.append({'repo':repo,'tier':tiers.get(repo,'pending'),'reason':'repository_changed','url':r['html_url']})
+                    self.s.set(event_key,evidence);self.s.set('gh:checked:'+repo,start);self.s.set(signal_key,signal)
+                    self.s.set(baseline_key,{'completed_at':now(),'run':self.run,'mode':'basic'})
+                    if repo in pending_names:self.s.candidate(repo,{'basic_profile_complete':True,'baseline_run':self.run})
+                    self.coverage[p]['completed_repositories']+=1
+                    self.coverage[p]['b_light_checks']=self.coverage[p].get('b_light_checks',0)+1
+                    continue
+                # Legacy policy retains its previous behavior until explicitly migrated.
+                if tiers.get(repo)=='B' and baseline:
                     if repo_change=='changed':self.tier_review.append({'repo':repo,'tier':'B','reason':'repository_changed','url':r['html_url']})
                     self.s.set('gh:checked:'+repo,start);self.s.set(signal_key,signal)
                     self.coverage[p]['completed_repositories']+=1
                     self.coverage[p]['b_light_checks']=self.coverage[p].get('b_light_checks',0)+1
                     continue
                 params={'state':'all','sort':'updated','direction':'desc','per_page':100}
-                if last:params['since']=(dt.datetime.fromisoformat(last)-dt.timedelta(days=1)).isoformat()
+                if last and baseline and not needs_a_baseline:params['since']=(dt.datetime.fromisoformat(last)-dt.timedelta(days=1)).isoformat()
                 for page in self.c.pages(p,url+'/issues?'+qs(params),self.cfg['github']['max_pages']):
                     for x in page:
                         kind='pull_request' if 'pull_request' in x else 'issue'
@@ -327,11 +435,14 @@ class Collector:
                         repo=repo,published_at=x.get('published_at'),created_at=x.get('created_at')))
                 self.s.set('gh:checked:'+repo,start)
                 self.s.set(signal_key,signal)
+                self.s.set(baseline_key,{'completed_at':now(),'run':self.run})
+                if repo in pending_names:self.s.candidate(repo,{'baseline_complete':True,'baseline_run':self.run})
                 self.coverage[p]['completed_repositories']+=1
             except StopPlatform:raise
             except Exception:continue
         pending=len(names)-self.coverage[p]['completed_repositories']
         if pending:self.c.warn(p,f'本轮仍有{pending}个候选/种子仓库未完成全部端点检查；下轮优先续采。')
+        self.new_candidates=self.s.pending_candidates()
 
     def hf(self):
         p='huggingface';repos={}
@@ -427,6 +538,8 @@ class Collector:
         self.coverage[p]['failed_items']=failures
 
 def write_outputs(store,client,collector,run_dir,run,start):
+    # Also execute when collection stops early: never lose the persistent backlog.
+    collector.new_candidates=store.pending_candidates()
     changes=[dict(r) for r in store.rows('SELECT * FROM changes WHERE run=?',(run,))]
     queue=[]
     for row in changes:
@@ -445,7 +558,7 @@ def write_outputs(store,client,collector,run_dir,run,start):
     (run_dir/'new-project-candidates.json').write_text(json.dumps(collector.new_candidates,ensure_ascii=False,indent=2)+'\n')
     (run_dir/'tier-review-queue.json').write_text(json.dumps(collector.tier_review,ensure_ascii=False,indent=2)+'\n')
     totals={p:len([x for x in queue if x['record']['platform']==p]) for p in client.counts}
-    stats={'run':run,'started':start,'finished':now(),'requests':client.counts,'changes_by_platform':totals,
+    stats={'workflow_version':2,'run':run,'started':start,'finished':now(),'requests':client.counts,'changes_by_platform':totals,
            'first_observed':sum(x['change']=='first_observed' for x in queue),'changed':sum(x['change']=='changed' for x in queue),
            'metric_changed':sum(x['change']=='metric_changed' for x in queue),'agent_review_items':len(agent_queue),
            'records_seen':len(collector.seen),'new_candidates_to_classify':len(collector.new_candidates),

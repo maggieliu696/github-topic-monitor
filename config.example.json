@@ -1,13 +1,34 @@
 {
   "project_name": "请填写项目名称",
   "topic": "请填写监控主题",
-  "questions": ["开发用途", "实际问题", "产品评价"],
-  "categories": ["分类一", "分类二"],
-  "github_queries": ["请填写 GitHub 搜索式"],
-  "exclusions": ["与主题同名但无关的内容"],
+  "questions": [
+    "开发用途",
+    "实际问题",
+    "产品评价"
+  ],
+  "categories": [
+    "分类一",
+    "分类二"
+  ],
+  "github_queries": [
+    "请填写 GitHub 搜索式"
+  ],
+  "exclusions": [
+    "与主题同名但无关的内容"
+  ],
   "timezone": "Asia/Shanghai",
-  "research_time": "09:00",
+  "research_time": "08:00",
   "push_time": "09:30",
   "delivery_channel": "feishu",
-  "language": "zh-CN"
+  "language": "zh-CN",
+  "platforms": [
+    "github",
+    "huggingface"
+  ],
+  "huggingface_queries": [
+    "请填写HF搜索词"
+  ],
+  "weekly_gap_review": "周日16:00",
+  "weekly_tier_review": "周一",
+  "note": "任务书草稿；Agent确认后须同步实际Microduck数据采集/config.json和示例项目清单。"
 }

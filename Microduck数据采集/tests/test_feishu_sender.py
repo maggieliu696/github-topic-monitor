@@ -11,7 +11,7 @@ SPEC.loader.exec_module(S)
 class FeishuSenderTests(unittest.TestCase):
     def test_card_keeps_public_links_and_removes_local_targets(self):
         source = "# 日报\n\n[公开](https://github.com/example/repo) [本地](</tmp/日报.md>)"
-        content = S.card_payload(source)["card"]["elements"][0]["content"]
+        content = str(S.card_payload(source)["card"]["elements"])
         self.assertIn("[公开](https://github.com/example/repo)", content)
         self.assertIn("本地", content)
         self.assertNotIn("/tmp/日报.md", content)

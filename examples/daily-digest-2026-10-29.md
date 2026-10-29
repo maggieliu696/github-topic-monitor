@@ -1,0 +1,31 @@
+# Microduck 日报 Demo（2026-10-29）
+
+> 这是2026年10月29日的一份真实输出样例，用于展示写作和排版；不是实时资讯，也不是下载者已经完成的研究。累计数为当时收录快照，“新收录”不等于当天新发布。公开项目链接仍可能在此后变化。
+>
+> 飞书发送时默认显示摘要，四个板块收进“展开阅读完整日报”面板。此文档没有机器人地址、签名密钥或内部发送记录。
+
+---
+
+🦆 microduck监控日报｜2026 年 10 月 29 日
+
+累计收录：GitHub 260 个，Hugging Face 205 个；本轮新收录分别为 138 个、18 个；重点监控 48 个。
+
+这轮的新进展主要是：自制鸭可以通过网页更新软件，控制工具也把更多操作放进了浏览器。动作训练除了跑得更快，还在尝试按指定位置落脚、用嘴夹起小物体；互动玩法则开始把多个动作串成一段表演。
+
+**自己组装：软件怎么升级、零件怎么买、装好后怎么调。**
+- **自制鸭可以通过网页更新软件了。** fanhao375 项目开发了网页控制台，用户可以在手机或电脑上检查并安装新版软件，不用重新往存储卡里写入整套系统。旧设备需要先安装一次升级入口。[更新说明](https://github.com/fanhao375/microduck-replica/releases/tag/microduck-software-v2026.10.28)
+- **新版正在适配另一种身体姿态传感器。** 这种小电路板帮助鸭子感知身体的倾斜和运动。新增了“秦墨”小板支持，实物升级和行走测试尚未完成。[适配说明](https://github.com/fanhao375/microduck-replica/releases/tag/microduck-software-v2026.10.28)
+- **组装者需要现成电路板和调试图。** 有人想买焊好、测过的板卡，也有人希望补充电机起始位置的对照图。[购买咨询](https://github.com/kissqy/Microduck-kissqy/issues/4) · [调试需求](https://github.com/LuwuDynamics/xgoduck_hardware/issues/11)
+
+**开发工具：用网页控制鸭子、安装社区训练好的动作。**
+- **quackd 把更多操作放进了网页。** 新版可以在浏览器里选择设备、执行任务、聊天和查看运行记录；手机连上同一个 Wi-Fi 后也能打开，减少了手动输入命令的步骤。[版本说明](https://github.com/rokbenko/quackd/releases/tag/v0.28.0)
+- **官方正在开发社区模型下载功能。** 模型可以理解为别人训练好的“动作包”。这项功能让用户自行决定是否下载，方便把社区训练成果装进鸭子，目前仍处于开发阶段。[官方改动提案](https://github.com/pollen-robotics/microduck/pull/482)
+
+**教鸭子做动作：走得更准、夹起东西、跑得更快。**
+- **开始教鸭子按指定位置落脚。** apirrone 提供了规划脚步和执行动作的模型，还附有可打印的脚印路线，让鸭子练习“下一脚踩在哪里”。作者称已有模型上实机测试。[项目说明](https://huggingface.co/apirrone/microduck-footsteps)
+- **鸭子开始练习用嘴夹起地面小物体。** RemiFabre 让鸭子蹲低、张嘴夹取，并发布了实机演示。电脑模拟中能夹起部分方块和棋子，但夹电池只成功了 3 次中的 1 次，硬币试了 3 次都没成功。[模型与演示](https://huggingface.co/RemiFabre/microduck-static-grasp)
+- **开发者在继续训练短跑、轮滑和拔河动作。** 有些模型围绕固定测试条件反复调试、提高成绩；也有作者增加随机条件，检查换一种情况后还能否完成动作。[训练示例](https://huggingface.co/rumezhak/microduck-sprint-remix-leader3) · [增加测试条件的项目](https://huggingface.co/jrubiosainz/microduck-game-hillclimber)
+
+**应用玩法：找东西、做表演、增加互动。**
+- **开始尝试让鸭子记住地点、探索和找球。** quackd 新增了这些功能，目前只在电脑里的二维模拟环境中测试，尚未开放给实体鸭使用。[版本说明](https://github.com/rokbenko/quackd/releases/tag/v0.28.0)
+- **把多个动作串起来，让鸭子演一段“小节目”。** 有项目用行走、坐下、摇头和鸣叫表现情绪，也有项目让五只鸭子配合演一段棋局。[情绪动作](https://huggingface.co/CWKAM/microduck-sad-duck) · [棋局表演](https://huggingface.co/craigm26/microduck-kith-duck-chess)

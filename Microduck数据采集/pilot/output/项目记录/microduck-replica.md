@@ -34,3 +34,8 @@
 - **2026 年 10 月 26 日：** 首次采集并整理本记录，记下 1,361 个 Star。今天完成的是我们的资料整理，上述项目进展不能都算成今天新增；Star 增减从下一次可比采集开始计算。[仓库信息](https://api.github.com/repos/fanhao375/microduck-replica)
 
 **2026 年 10 月 26 日：纳入本轮各类 Star 前十的跟踪名单。** 本轮复查公开留言，继续看到打印、板卡配套和交流群入口的问题；没有把提问当作已购买。Star 在 2026-10-26 16:43 记录为 1,367。原有问题和历史进展保留在本文。[最新留言](https://github.com/fanhao375/microduck-replica/issues)
+
+- **2026 年 10 月 28 日：** 发布无需重烧 SD 卡的软件更新路径，增加本地坐下、站立语音控制，并加入 Qinmo 舵机与 IMU 选择。作者说明网页、软件包和回退流程已通过软件检查，但 Qinmo 实物、整机升级以及真人语音环境仍待验收；音乐跟拍和自由 AI 对话还没有解决。[软件更新说明](https://github.com/fanhao375/microduck-replica/releases/tag/microduck-software-v2026.10.28)
+
+
+2026年10月29日补记：发布软件套件2026.10.28：网页/语音与主程序分两步更新，增加秦墨板选项，保留用户配置与恢复入口；作者明确实物旧卡升级、掉电恢复、秦墨小板和实际行走仍待验收。参考：https://github.com/fanhao375/microduck-replica/releases/tag/microduck-software-v2026.10.28
